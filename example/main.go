@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/jnst/heroku-ping/ping"
+	"github.com/jnst/heroku-ping"
 )
 
 func main() {

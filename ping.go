@@ -3,7 +3,6 @@ package ping
 import (
 	"errors"
 	"fmt"
-	"log"
 	"net/http"
 	"os"
 	"time"
@@ -45,12 +44,12 @@ func ListenAndServe(port string) {
 		fmt.Printf("%s %s %s %s\n", r.Method, r.URL.Path, r.Proto, r.Header.Get("User-Agent"))
 		_, err := fmt.Fprintf(w, "ok")
 		if err != nil {
-			log.Printf("[ping] error: %v", err)
+			fmt.Printf("[ping] error: %v", err)
 		}
 	})
 
 	err := http.ListenAndServe(":"+port, nil)
 	if err != nil {
-		log.Printf("[ping] error: %v", err)
+		fmt.Printf("[ping] error: %v", err)
 	}
 }
