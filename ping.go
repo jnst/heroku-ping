@@ -40,13 +40,16 @@ func Ping(url string) {
 
 // ListenAndServe listens and serve http request.
 func ListenAndServe(port string) {
-	http.HandleFunc("/ping", func(w http.ResponseWriter, r *http.Request) {
+	path := "/ping"
+	http.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
 		fmt.Printf("%s %s %s %s\n", r.Method, r.URL.Path, r.Proto, r.Header.Get("User-Agent"))
 		_, err := fmt.Fprintf(w, "ok")
 		if err != nil {
 			fmt.Printf("[ping] error: %v", err)
 		}
 	})
+
+	fmt.Printf("Listening on port %s, path %s\n", port, path)
 
 	err := http.ListenAndServe(":"+port, nil)
 	if err != nil {
